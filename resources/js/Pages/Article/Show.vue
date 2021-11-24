@@ -31,8 +31,10 @@
                   <dd class="text-gray-900">Adam Wathan</dd>
                   <dt class="sr-only">Twitter</dt>
                   <dd>
-                    <a href="https://twitter.com/adamwathan"
-                       class="text-orange-600 hover:text-orange-700">@adamwathan</a>
+                    <Link :href="route('about')"
+                          class="text-orange-600 hover:text-orange-700">
+                    @adamwathan
+                    </Link>
                   </dd>
                 </dl>
               </li>
@@ -464,19 +466,19 @@
             <div>
               <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">Next Article</h2>
               <div class="text-orange-600 hover:text-orange-700">
-                <a href="/tailwind-ui-now-with-react-and-vue-support">Tailwind UI: Now with React + Vue support</a>
+                <Link :href="route('articles.show', 2)">Tailwind UI: Now with React + Vue support</Link>
               </div>
             </div>
             <div>
               <h2 class="text-xs leading-5 tracking-wide uppercase text-gray-500">Previous Article</h2>
               <div class="text-orange-600 hover:text-orange-700">
-                <a href="/tailwindcss-2-1">Tailwind CSS v2.1</a>
+                <Link :href="route('articles.show', 2)">Tailwind CSS v2.1</Link>
               </div>
             </div>
           </div>
           <div class="pt-8">
-            <a class="text-orange-600 hover:text-orange-700"
-               href="/">← Back to the blog</a>
+            <Link :href="route('home')"
+                  class="text-orange-600 hover:text-orange-700">← 返回首页</Link>
           </div>
         </footer>
       </div>
@@ -487,10 +489,12 @@
 <script>
 import { defineComponent } from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
+import { Link } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
   components: {
     AppLayout,
+    Link
   },
 })
 </script>

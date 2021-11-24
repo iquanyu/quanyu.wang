@@ -19,11 +19,11 @@
           <jet-nav-link :href="route('home')">
             首页
           </jet-nav-link>
-          <jet-nav-link :href="route('home')">
+          <jet-nav-link :href="route('archives')">
             文章归档
           </jet-nav-link>
 
-          <jet-nav-link :href="route('home')">
+          <jet-nav-link :href="route('about')">
             关于我
           </jet-nav-link>
 
@@ -194,6 +194,16 @@
           <jet-responsive-nav-link :href="route('home')"
                                    :active="route().current('home')">
             首页
+          </jet-responsive-nav-link>
+
+          <jet-responsive-nav-link :href="route('archives')"
+                                   :active="route().current('archives')">
+            文章归档
+          </jet-responsive-nav-link>
+
+          <jet-responsive-nav-link :href="route('about')"
+                                   :active="route().current('about')">
+            关于我
           </jet-responsive-nav-link>
         </div>
 

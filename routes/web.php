@@ -31,3 +31,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/articles/{article}', function () {
   return Inertia::render('Article/Show', []);
 })->name('articles.show');
+
+
+Route::get('/archives', function () {
+  return Inertia::render('Archives', []);
+})->name('archives');
+
+Route::get('/about', function () {
+  return Inertia::render('About', []);
+})->name('about');

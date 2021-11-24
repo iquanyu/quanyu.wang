@@ -14,20 +14,24 @@
             </dl>
             <div class="space-y-5 xl:col-span-3">
               <div class="space-y-6">
-                <h2 class="text-2xl font-bold tracking-tight"><a class="text-gray-900"
-                     href="#">Introducing Tailwind UI Ecommerce</a></h2>
+                <h2 class="text-2xl font-bold tracking-tight">
+                  <Link :href="route('articles.show', 1)"
+                        class="text-gray-900">Introducing Tailwind UI Ecommerce</Link>
+                </h2>
                 <div class="prose max-w-none text-gray-500">
                   <div class="prose max-w-none">
                     <p>Almost 6 months in the making, we finally released <a href="https://tailwindui.com/#product-ecommerce">Tailwind UI Ecommerce</a> — the first all-new component kit for Tailwind UI since the initial launch back in February 2020.</p>
                   </div>
                 </div>
               </div>
-              <div class="text-base font-medium"><a class="text-orange-600 hover:text-orange-700"
-                   aria-label="Read &quot;Introducing Tailwind UI Ecommerce&quot;"
-                   href="#">阅读更多 →</a></div>
+              <div class="text-base font-medium">
+                <Link :href="route('articles.show', 1)"
+                      class="text-orange-600 hover:text-orange-700">阅读更多 →</Link>
+              </div>
             </div>
           </article>
         </li>
+
       </ul>
     </div>
   </app-layout>
@@ -36,10 +40,12 @@
 <script>
 import { defineComponent } from 'vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
+import { Link } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
   components: {
     AppLayout,
+    Link
   },
 })
 </script>
