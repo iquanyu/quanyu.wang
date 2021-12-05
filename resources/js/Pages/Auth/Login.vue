@@ -1,98 +1,117 @@
 <template>
-    <Head title="Log in" />
 
-    <jet-authentication-card>
-        <template #logo>
-            <jet-authentication-card-logo />
-        </template>
+  <Head title="Log in" />
 
-        <jet-validation-errors class="mb-4" />
+  <jet-authentication-card>
+    <template #logo>
+      <jet-authentication-card-logo />
+    </template>
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
-        </div>
+    <jet-validation-errors class="mb-4" />
 
-        <form @submit.prevent="submit">
-            <div>
-                <jet-label for="email" value="Email" />
-                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
-            </div>
+    <div v-if="status"
+         class="mb-4 font-medium text-sm text-green-600">
+      {{ status }}
+    </div>
 
-            <div class="mt-4">
-                <jet-label for="password" value="Password" />
-                <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
-            </div>
+    <form @submit.prevent="submit">
+      <div>
+        <jet-label for="email"
+                   value="邮箱" />
+        <jet-input id="email"
+                   type="email"
+                   class="mt-1 block w-full"
+                   v-model="form.email"
+                   required
+                   autofocus />
+      </div>
 
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <jet-checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
-                </label>
-            </div>
+      <div class="mt-4">
+        <jet-label for="password"
+                   value="密码" />
+        <jet-input id="password"
+                   type="password"
+                   class="mt-1 block w-full"
+                   v-model="form.password"
+                   required
+                   autocomplete="current-password" />
+      </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Forgot your password?
-                </Link>
+      <div class="block mt-4">
+        <label class="flex items-center">
+          <jet-checkbox name="remember"
+                        v-model:checked="form.remember" />
+          <span class="ml-2 text-sm text-gray-600">记住我</span>
+        </label>
+      </div>
 
-                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </jet-button>
-            </div>
-        </form>
-    </jet-authentication-card>
+      <div class="flex items-center justify-end mt-4">
+        <Link v-if="canResetPassword"
+              :href="route('password.request')"
+              class="underline text-sm text-gray-600 hover:text-gray-900">
+        忘记密码?
+        </Link>
+
+        <jet-button class="ml-4"
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing">
+          登陆
+        </jet-button>
+      </div>
+    </form>
+  </jet-authentication-card>
 </template>
 
 <script>
-    import { defineComponent } from 'vue'
-    import JetAuthenticationCard from '@/Jetstream/AuthenticationCard.vue'
-    import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue'
-    import JetButton from '@/Jetstream/Button.vue'
-    import JetInput from '@/Jetstream/Input.vue'
-    import JetCheckbox from '@/Jetstream/Checkbox.vue'
-    import JetLabel from '@/Jetstream/Label.vue'
-    import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
-    import { Head, Link } from '@inertiajs/inertia-vue3';
+import { defineComponent } from 'vue'
+import JetAuthenticationCard from '@/Jetstream/AuthenticationCard.vue'
+import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo.vue'
+import JetButton from '@/Jetstream/Button.vue'
+import JetInput from '@/Jetstream/Input.vue'
+import JetCheckbox from '@/Jetstream/Checkbox.vue'
+import JetLabel from '@/Jetstream/Label.vue'
+import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
+import { Head, Link } from '@inertiajs/inertia-vue3';
 
-    export default defineComponent({
-        components: {
-            Head,
-            JetAuthenticationCard,
-            JetAuthenticationCardLogo,
-            JetButton,
-            JetInput,
-            JetCheckbox,
-            JetLabel,
-            JetValidationErrors,
-            Link,
-        },
+export default defineComponent({
+  components: {
+    Head,
+    JetAuthenticationCard,
+    JetAuthenticationCardLogo,
+    JetButton,
+    JetInput,
+    JetCheckbox,
+    JetLabel,
+    JetValidationErrors,
+    Link,
+  },
 
-        props: {
-            canResetPassword: Boolean,
-            status: String
-        },
+  props: {
+    canResetPassword: Boolean,
+    status: String
+  },
 
-        data() {
-            return {
-                form: this.$inertia.form({
-                    email: '',
-                    password: '',
-                    remember: false
-                })
-            }
-        },
+  data () {
+    return {
+      form: this.$inertia.form({
+        email: '',
+        password: '',
+        remember: false
+      })
+    }
+  },
 
-        methods: {
-            submit() {
-                this.form
-                    .transform(data => ({
-                        ... data,
-                        remember: this.form.remember ? 'on' : ''
-                    }))
-                    .post(this.route('login'), {
-                        onFinish: () => this.form.reset('password'),
-                    })
-            }
-        }
-    })
+  methods: {
+    submit () {
+      this.form
+        .transform(data => ({
+          ...data,
+          remember: this.form.remember ? 'on' : ''
+        }))
+        .post(this.route('login'), {
+          onFinish: () => this.form.reset('password'),
+        })
+    }
+  }
+})
 </script>

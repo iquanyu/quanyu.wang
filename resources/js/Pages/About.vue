@@ -1,5 +1,5 @@
 <template>
-  <app-layout title="About">
+  <app-layout title="关于博主">
     <div class="divide-y divide-gray-200">
       <div class="pt-6 pb-8 space-y-2 md:space-y-5">
         <!-- <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl md:text-[4rem] md:leading-[3.5rem]">Latest</h1> -->

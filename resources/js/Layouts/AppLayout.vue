@@ -118,7 +118,8 @@
                   <span v-else
                         class="inline-flex rounded-md">
                     <button type="button"
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition">
+                      <!--bg-white-->
                       {{ $page.props.user.name }}
 
                       <svg class="ml-2 -mr-0.5 h-4 w-4"
@@ -134,13 +135,20 @@
                 </template>
 
                 <template #content>
+
+                  <jet-dropdown-link :href="route('articles.create')">
+                    写文章
+                  </jet-dropdown-link>
                   <!-- Account Management -->
                   <div class="block px-4 py-2 text-xs text-gray-400">
-                    Manage Account
+                    账号管理
                   </div>
 
+                  <jet-dropdown-link :href="route('dashboard')">
+                    仪表盘
+                  </jet-dropdown-link>
                   <jet-dropdown-link :href="route('profile.show')">
-                    Profile
+                    个人信息
                   </jet-dropdown-link>
 
                   <jet-dropdown-link :href="route('api-tokens.index')"
@@ -153,7 +161,7 @@
                   <!-- Authentication -->
                   <form @submit.prevent="logout">
                     <jet-dropdown-link as="button">
-                      Log Out
+                      注销登录
                     </jet-dropdown-link>
                   </form>
                 </template>
@@ -225,9 +233,13 @@
           </div>
 
           <div class="mt-3 space-y-1">
+            <jet-responsive-nav-link :href="route('dashboard')"
+                                     :active="route().current('dashboard')">
+              仪表盘
+            </jet-responsive-nav-link>
             <jet-responsive-nav-link :href="route('profile.show')"
                                      :active="route().current('profile.show')">
-              Profile
+              我的信息
             </jet-responsive-nav-link>
 
             <jet-responsive-nav-link :href="route('api-tokens.index')"
@@ -240,7 +252,7 @@
             <form method="POST"
                   @submit.prevent="logout">
               <jet-responsive-nav-link as="button">
-                Log Out
+                注销登录
               </jet-responsive-nav-link>
             </form>
 
