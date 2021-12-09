@@ -15,18 +15,18 @@
   ```
 -->
   <template>
-  <app-layout title="写文章">
+  <app-layout title="编辑文章">
     <div>
       <div class="pt-6 pb-8 space-y-2 md:space-y-5">
         <!-- <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl md:text-[4rem] md:leading-[3.5rem]">Latest</h1> -->
         <p class="text-lg text-gray-500">
           页面：
-          <span>写文章</span>
+          <span>编辑文章</span>
         </p>
       </div>
       <div class>
         <div class="mt-5 md:mt-0">
-          <form @submit.prevent="store">
+          <form @submit.prevent="update">
             <div class="shadow sm:rounded-md sm:overflow-hidden">
               <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                 <div class="grid grid-cols-3 gap-6">
@@ -65,9 +65,14 @@
                   <label class="block text-sm font-medium text-gray-700">文章封面</label>
                   <div class="mt-1 flex justify-center flex-col items-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                     <div class="mb-4 w-full"
-                         v-show="coverPreview">
+                         v-show="coverPreview || form.cover">
+
                       <div class="block rounded w-full h-64 bg-cover bg-no-repeat bg-center"
+                           v-show="coverPreview"
                            :style="'background-image: url(\'' + coverPreview + '\');'"></div>
+                      <div class="block rounded w-full h-64 bg-cover bg-no-repeat bg-center"
+                           v-show="!coverPreview"
+                           :style="'background-image: url(\'' + form.cover + '\');'"></div>
                     </div>
                     <div class="space-y-1 text-center flex-shrink-0">
                       <svg v-show="!coverPreview"
@@ -271,6 +276,7 @@ import { useForm } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
   props: {
+    article: Object,
     categories: Array
   },
   components: {
@@ -293,14 +299,14 @@ export default defineComponent({
       errors: [],
 
       form: this.$inertia.form({
-        title: '',
-        slug: '',
-        description: '',
-        markdown: '# header',
-        category: 1,
-        is_top: false,
-        cover: '',
-        content: ''
+        title: this.article.title,
+        slug: this.article.slug,
+        markdown: this.article.markdown,
+        description: this.article.description,
+        category: this.article.category_id,
+        is_top: this.article.is_top ? true : false,
+        cover: this.article.cover,
+        content: this.article.content,
       }),
     };
   },
@@ -375,16 +381,18 @@ export default defineComponent({
       reader.readAsDataURL(cover);
     },
     //提交表单
-    store () {
+    update () {
+
       this.form.content = this.compiledMarkdown
 
-      if (this.$refs.cover) {
+      if (this.coverPreview) {
         this.form.cover = this.$refs.cover.files[0]
       }
 
-      this.form.post(this.route('articles.store'), {
-        forceFormData: true,
-      })
+      console.log(this.form);
+
+      this.form.post(this.route('articles.update', this.article.id))
+
     },
     // update: _.debounce(function (e) {
     //   this.form.markdown = e.target.value;

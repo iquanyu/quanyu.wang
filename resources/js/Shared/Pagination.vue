@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-6 -mb-1 flex flex-wrap mx-auto justify-center py-6">
+  <div class="-mb-1 flex flex-wrap mx-auto justify-center py-6">
     <template v-for="(link, key) in links">
       <div v-if="link.url === null"
            :key="key"

@@ -12,6 +12,13 @@
                 <span>{{ article.view_count }}次查看</span>
                 <span class="text-gray-400"> / </span>
                 <span>{{ article.category.name }}</span>
+                <!-- <span class="text-gray-400"> / </span>
+                <span>{{ article.slug }}</span> -->
+                <!-- <div v-if="article.author.id == user.id">
+                  <Link :href="route('articles.edit', article.id)">编辑</Link>
+                  <span class="text-gray-400"> / </span>
+                  <span>删除</span>
+                </div> -->
               </dd>
             </div>
           </dl>
@@ -46,7 +53,16 @@
           </dd>
         </dl>
         <div class="divide-y divide-gray-200 xl:pb-0 xl:col-span-3 xl:row-span-2">
+
           <div class="max-w-none pt-10 pb-8">
+
+            <div v-if="article.cover"
+                 class="w-full mb-4">
+              <img :src="article.cover"
+                   :alt="article.title"
+                   class="w-full">
+            </div>
+
             <div class="prose max-w-none"
                  v-html="article.content">
             </div>
@@ -92,7 +108,8 @@ import { Link } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
   props: {
-    article: Object
+    article: Object,
+    user: Object
   },
   components: {
     AppLayout,

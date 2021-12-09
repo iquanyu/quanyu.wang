@@ -21,6 +21,12 @@ class ArticleFactory extends Factory
 
     $content = '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>' . '<p>' . $this->faker->paragraph() . '</p>';
 
+    $stateArray = [
+      'publish',
+      'draft',
+      'private'
+    ];
+
     return [
       'user_id' => $this->faker->randomElement([1]),
       'category_id' => $this->faker->randomElement([1]),
@@ -29,6 +35,7 @@ class ArticleFactory extends Factory
       'content' => $content,
       'markdown' => '# header',
       'slug' => $this->faker->word . '_' . $this->faker->word . '-' . $this->faker->word,
+      'state' => $this->faker->randomElement($stateArray),
     ];
   }
 }

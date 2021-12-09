@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "333db256ef8fa1fc06fb0f65d58bb034",
+    "content-hash": "9391056e723a32a027bc32a9698275ef",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2815,6 +2815,138 @@
                 "source": "https://github.com/opis/closure/tree/3.6.2"
             },
             "time": "2021-04-09T13:42:10+00:00"
+        },
+        {
+            "name": "overtrue/laravel-pinyin",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/laravel-pinyin.git",
+                "reference": "c0b15aa49eac08bff80122010b91a0b3fe0f1e21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/laravel-pinyin/zipball/c0b15aa49eac08bff80122010b91a0b3fe0f1e21",
+                "reference": "c0b15aa49eac08bff80122010b91a0b3fe0f1e21",
+                "shasum": ""
+            },
+            "require": {
+                "overtrue/pinyin": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Overtrue\\LaravelPinyin\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Pinyin": "Overtrue\\LaravelPinyin\\Facades\\Pinyin"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\LaravelPinyin\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com"
+                }
+            ],
+            "description": "Chinese to Pinyin translator.",
+            "keywords": [
+                "Chinese",
+                "Pinyin",
+                "laravel",
+                "overtrue"
+            ],
+            "support": {
+                "issues": "https://github.com/overtrue/laravel-pinyin/issues",
+                "source": "https://github.com/overtrue/laravel-pinyin/tree/master"
+            },
+            "time": "2018-10-10T09:02:46+00:00"
+        },
+        {
+            "name": "overtrue/pinyin",
+            "version": "4.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/pinyin.git",
+                "reference": "04bdb4d33d50e8fb1aa5a824064c5151c4b15dc2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/pinyin/zipball/04bdb4d33d50e8fb1aa5a824064c5151c4b15dc2",
+                "reference": "04bdb4d33d50e8fb1aa5a824064c5151c4b15dc2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "brainmaestro/composer-git-hooks": "^2.7",
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "phpunit/phpunit": "~8.0"
+            },
+            "type": "library",
+            "extra": {
+                "hooks": {
+                    "pre-commit": [
+                        "composer test",
+                        "composer fix-style"
+                    ],
+                    "pre-push": [
+                        "composer test",
+                        "composer check-style"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\Pinyin\\": "src/"
+                },
+                "files": [
+                    "src/const.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com",
+                    "homepage": "http://github.com/overtrue"
+                }
+            ],
+            "description": "Chinese to pinyin translator.",
+            "homepage": "https://github.com/overtrue/pinyin",
+            "keywords": [
+                "Chinese",
+                "Pinyin",
+                "cn2pinyin"
+            ],
+            "support": {
+                "issues": "https://github.com/overtrue/pinyin/issues",
+                "source": "https://github.com/overtrue/pinyin/tree/4.0.8"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/overtrue",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-07-19T03:43:32+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -7415,6 +7547,73 @@
                 "source": "https://github.com/laravel/sail"
             },
             "time": "2021-11-16T16:55:18+00:00"
+        },
+        {
+            "name": "laravel/telescope",
+            "version": "v4.6.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/telescope.git",
+                "reference": "848d32cbeb4eca82cacea821dd59cc4df10f4182"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/848d32cbeb4eca82cacea821dd59cc4df10f4182",
+                "reference": "848d32cbeb4eca82cacea821dd59cc4df10f4182",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": "^8.29",
+                "php": "^7.3|^8.0",
+                "symfony/var-dumper": "^5.0"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "orchestra/testbench": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Telescope\\TelescopeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Telescope\\": "src/",
+                    "Laravel\\Telescope\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Mohamed Said",
+                    "email": "mohamed@laravel.com"
+                }
+            ],
+            "description": "An elegant debug assistant for the Laravel framework.",
+            "keywords": [
+                "debugging",
+                "laravel",
+                "monitoring"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/telescope/issues",
+                "source": "https://github.com/laravel/telescope/tree/v4.6.9"
+            },
+            "time": "2021-12-07T16:37:53+00:00"
         },
         {
             "name": "mockery/mockery",
