@@ -42,7 +42,7 @@
             </div>
           </div>
 
-          <div class="mt-10 sm:mt-0">
+          <!-- <div class="mt-10 sm:mt-0">
             <div class="md:grid md:grid-cols-3 md:gap-6">
               <div class="md:col-span-1">
                 <div class="px-4 sm:px-0">
@@ -150,7 +150,7 @@
                 </form>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

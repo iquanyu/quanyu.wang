@@ -26,7 +26,7 @@ class CreateArticlesTable extends Migration
       $table->unsignedTinyInteger('is_top')->default(0);
       $table->string('type')->default('article');
       $table->integer('view_count')->default(0);
-      $table->string('state')->deflault('draft');
+      $table->string('state')->default('draft');
       //draft草稿，trash回收站，publish已发布，future定时，private私有
       $table->dateTime('futured_at')->nullable();
       $table->timestamps();

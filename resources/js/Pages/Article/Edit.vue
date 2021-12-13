@@ -171,6 +171,43 @@
                   </p>
                 </div>
 
+                <div class="grid grid-cols-3 gap-6">
+                  <div class="col-span-3 sm:col-span-1">
+                    <label for="state"
+                           class="block text-sm font-medium text-gray-700">发布</label>
+                    <select id="state"
+                            name="state"
+                            v-model="form.article_state"
+                            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                      <option value="publish">立即</option>
+                      <option value="draft">草稿</option>
+                      <!-- <option value="future">定时</option> -->
+                      <option value="private">私有</option>
+                    </select>
+                    <p class="mt-2 text-sm text-gray-500">
+                      定时发布功能即将推出
+                    </p>
+                  </div>
+                  <div class="col-span-3 sm:col-span-2">
+                    <label for="futured_at"
+                           class="block text-sm font-medium text-gray-700">&nbsp;</label>
+                    <div class="mt-1 flex rounded-md shadow-sm">
+                      <input type="datetime-local"
+                             name="futured_at"
+                             id="futured_at"
+                             :min="now()"
+                             :disabled="form.article_state != 'future'"
+                             class="focus:ring-orange-500 focus:border-orange-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300"
+                             placeholder="定时"
+                             v-model="form.futured_at" />
+                    </div>
+                    <p class="mt-2 text-sm text-red-500"
+                       v-if="form.errors.title">
+                      {{ form.errors.futured_at }}
+                    </p>
+                  </div>
+                </div>
+
                 <div class="col-span-6 sm:col-span-3">
                   <!-- <label for="top"
                   class="block text-sm font-medium text-gray-700">是否置顶</label>-->
@@ -307,6 +344,7 @@ export default defineComponent({
         is_top: this.article.is_top ? true : false,
         cover: this.article.cover,
         content: this.article.content,
+        article_state: this.article.state
       }),
     };
   },
@@ -359,6 +397,9 @@ export default defineComponent({
     }
   },
   methods: {
+    now () {
+      return new Date();
+    },
     //删除文章封面预览
     deleteCover () {
       this.coverPreview = null;

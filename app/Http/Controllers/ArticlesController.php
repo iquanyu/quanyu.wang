@@ -58,10 +58,11 @@ class ArticlesController extends Controller
     $validated = $request->validate([
       'title' => 'required|max:255',
       'content' => 'required',
-      'description' => 'max:500'
+      'description' => 'max:500',
+      'cover' => 'sometimes|image|nullable'
     ]);
 
-    //return response()->json($request->input('content'));
+    //return response()->json($request->all());
 
     $article = [
       'title' => $request->input('title'),
@@ -70,9 +71,12 @@ class ArticlesController extends Controller
       'is_top' => $request->input('is_top'),
       'category_id' => $request->input('category'),
       'description' => $request->input('description'),
-      'slug' => Str::slug(app(Pinyin::class)->permalink($request->input('title')))
+      'slug' => Str::slug(app(Pinyin::class)->permalink($request->input('title'))),
+      'state' => in_array($request->input('article_state'), ['publish', 'draft', 'future', 'private']) ? $request->input('article_state') : 'publish',
+      'futured_at' => $request->input('futured_at')
     ];
 
+    //draft草稿，trash回收站，publish已发布，future定时，private私有
     if ($request->hasFile('cover')) {
       $path = $request->file('cover')->store('/public/cover');
       $article['cover'] = '/' . Str::of($path)->replace('public', 'storage');
@@ -134,7 +138,8 @@ class ArticlesController extends Controller
     $validated = $request->validate([
       'title' => 'required|max:255',
       'content' => 'required',
-      'description' => 'max:500'
+      'description' => 'max:500',
+      'cover' => 'sometimes|image'
     ]);
 
     $data = [
@@ -145,6 +150,8 @@ class ArticlesController extends Controller
       'category_id' => $request->input('category'),
       'description' => $request->input('description'),
       //'slug' => Str::slug(app(Pinyin::class)->permalink($request->input('title')))
+      'state' => in_array($request->input('article_state'), ['publish', 'draft', 'future', 'private']) ? $request->input('article_state') : $article->state,
+      'futured_at' => $request->input('futured_at')
     ];
 
     if ($request->hasFile('cover')) {
@@ -195,7 +202,12 @@ class ArticlesController extends Controller
 
     $this->authorize('forceDelete', $article);
 
-    $article->forceDelete();
+
+    DB::delete("delete from articles where id = " . $id);
+
+    //$article->forceDelete();
+
+    return back();
 
     return Redirect::route('manage.articles')->with('success', 'Article forceDelete.');
   }

@@ -12,6 +12,21 @@ class Articlepolicy
 {
   use HandlesAuthorization;
 
+
+  /**
+   * 执行预先授权检查
+   *
+   * @param  \App\Models\User  $user
+   * @param  string  $ability
+   * @return void|bool
+   */
+  public function before(User $user, $ability)
+  {
+    if ($user->id == 1) {
+      return true;
+    }
+  }
+
   /**
    * Determine whether the user can view any models.
    *

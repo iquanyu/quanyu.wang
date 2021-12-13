@@ -10,10 +10,9 @@
       <div>
         <manage-nav></manage-nav>
 
-        <div class="divide-y divide-gray-200">
+        <!-- <div class="divide-y divide-gray-200">
           <div class="pt-6 pb-8 space-y-2 md:space-y-5">
-            <!-- <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl md:text-[4rem] md:leading-[3.5rem]">Latest</h1> -->
-            <p class="text-lg text-gray-500">页面：<span>关于博主</span></p>
+             <p class="text-lg text-gray-500">页面：<span>关于博主</span></p>
           </div>
           <div class="xl:py-12 py-6">
             <div class="divide-y xl:divide-y-0 divide-gray-200 xl:grid xl:grid-cols-4 xl:gap-x-6 pb-16 xl:pb-20">
@@ -37,16 +36,10 @@
                   <p>金钱往往能够提高效率，节省你我宝贵时间</p>
                 </div>
               </div>
-              <!-- <footer class="text-sm font-medium xl:col-start-1 xl:row-start-2">
-            <div class="pt-24">
-              <a class="text-orange-600 hover:text-orange-700"
-                 href="/">← Back to the blog</a>
-            </div>
-          </footer> -->
             </div>
           </div>
-        </div>
-        <!-- <div class="py-12 w-full">
+        </div> -->
+        <div class="py-12 w-full">
           <div class="flow-root">
             <ul role="list"
                 class="-mb-8">
@@ -204,7 +197,7 @@
 
             </ul>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
 
